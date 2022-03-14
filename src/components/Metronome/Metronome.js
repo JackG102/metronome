@@ -15,7 +15,7 @@ const Metronome = () => {
       <h2>Metronome Component</h2>
       <form>
         <input 
-          className="slider" 
+          className="ui field" 
           id="myRange"
           type="range" 
           min="1" 
