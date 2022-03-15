@@ -7,6 +7,7 @@ const Metronome = () => {
   const [bpm, setBPM] = useState('60');
   const [running, setRunning] = useState(false);
 
+  // Listening to running state -- if it changes to true enage metronome!
   useEffect(() => {
     let metronomeSession = '';
     if (running) {
