@@ -1,13 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 const Metronome = () => {
+  const metronomeSound = new Audio('../assets/metronome.wav');
+
   const [bpm, setBPM] = useState('60');
   const [running, setRunning] = useState(false);
 
-  const toggleRunning = (event) => {
+  useEffect(() => {
+    let metronomeSession = '';
+    if (running) {
+      metronomeSession = setInterval(() => {
+        metronomeSound.play();
+      }, 60000/bpm);
+    }
+
+    return () => clearInterval(metronomeSession);
+  }, [running]);
+
+  const toggleMetronome = (event) => {
     event.preventDefault();
-    running ? setRunning(false) : setRunning(true);
+    running !== true ? setRunning(true) : setRunning(false);
   };
 
   return (
@@ -27,7 +40,7 @@ const Metronome = () => {
         <button 
           className="ui button green" 
           type="submit"
-          onClick={toggleRunning}
+          onClick={toggleMetronome}
         >
           {running ? 'Stop' : 'Start'}
         </button>
