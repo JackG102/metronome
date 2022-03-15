@@ -3,17 +3,18 @@ import ReactDOM from 'react-dom';
 import audio from './assets/metronome.wav';
 
 const Metronome = () => {
-  const metronomeSound = new Audio(audio);
   const [bpm, setBPM] = useState('60');
   const [running, setRunning] = useState(false);
 
   // Listening to running state -- if it changes to true enage metronome!
   useEffect(() => {
     let metronomeSession = '';
+
     if (running) {
       metronomeSession = setInterval(() => {
+        const metronomeSound = new Audio(audio);
         metronomeSound.play();
-      }, 60000/bpm);
+      }, (60/bpm) * 1000);
     }
 
     return () => clearInterval(metronomeSession);
