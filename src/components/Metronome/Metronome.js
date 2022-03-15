@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import audio from './assets/metronome.wav';
 
 const Metronome = () => {
-  const metronomeSound = new Audio('../assets/metronome.wav');
-
+  const metronomeSound = new Audio(audio);
   const [bpm, setBPM] = useState('60');
   const [running, setRunning] = useState(false);
 
